@@ -34,18 +34,17 @@ function App() {
 
 
   return (
-    <div className="App">
+    <div className="App weather-cards">
       <div style={{padding:'50px 0px'}}>
         <input type='text' value={city} placeholder='Enter City Name' onChange={handleChange} style={{border:'none', width:'200px', height:'30px'}}/>
         <button type='button' onClick={handleApiCall} style={{height:'30px', backgroundColor:'green', color:'white', border:'none'}}>Search</button>
       </div>
       {apiRes && apiRes.current ? (
-        <div className='weather-cards' style={{ width: '100%', display: 'flex', justifyContent:'space-evenly', alignContent:'space-evenly' }}>
+        <div style={{ width: '100%', display: 'flex', justifyContent:'space-evenly', alignContent:'space-evenly' }}>
           <Card title={'Temperature'} value={apiRes.current.temp_c}/>
           <Card title={'Humidity'} value={apiRes.current.humidity}/>
           <Card title={'Condition'} value={apiRes.current.condition.text}/>
           <Card title={'Wind Speed'} value={`${apiRes.current.wind_kph} Kph`}/>
-
         </div>
       ) : (
         isSearchOn ?(<div style={{ width: '100%', textAlign:'center'}}>
