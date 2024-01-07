@@ -8,15 +8,21 @@ function App() {
   const [apiRes, setApiRes] = useState({});
   const [isSearchOn, setIsSearchOn]= useState(false)
 
-
   const handleApiCall = () => {
-      setIsSearchOn(true)
-      fetch(`https://api.weatherapi.com/v1/current.json?key=1f88b5cbff0d471981382302240701&q=${city}&aqi=no`).then(function(res){
-        return res.json();
-      }).then((res)=>   setApiRes(res)).catch(function(error) {
-      setIsSearchOn(false)
-      alert('Failed to fetch weather data')
-  })}
+    setIsSearchOn(true);
+    fetch(`https://api.weatherapi.com/v1/current.json?key=1f88b5cbff0d471981382302240701&q=${city}&aqi=no`)
+      .then(function(res) {
+        if (res.ok) {
+          return res.json().then((data) => setApiRes(data));
+        } else {
+          throw new Error('Failed to fetch weather data');
+        }
+      })
+      .catch(function(error) {
+        setIsSearchOn(false);
+        alert('Failed to fetch weather data');
+      });
+  };
   
 
   const handleChange=(event)=>{
