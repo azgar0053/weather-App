@@ -23,7 +23,7 @@ function App() {
       console.log(res)
     } catch (error) {
       setIsSearchOn(false)
-      alert(error.message);
+      alert('Failed to fetch weather data')
     }
   };
   
